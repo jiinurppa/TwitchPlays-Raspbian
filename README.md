@@ -5,6 +5,11 @@
 1. System -> Boot: **To Desktop**
 1. Interfaces -> VNC: **Enable**
 
+## Disable Display Sleep
+1. Run `sudo nano /etc/lightdm/lightdm.conf`
+1. Add `xserver-command=X -s 0 dpms` under `[Seat:*]`
+1. Save the file with `Ctrl+O` and exit with `Ctrl+X`
+
 ## Enable GL Driver
 1. Run `sudo raspi-config`
 1. Select **Advanced Options**
@@ -97,11 +102,6 @@ while True:
 3. Set your username (line 15) and OAuth token (line 16)
 
 The above script is a adapted from `main.py` found here: http://www.wituz.com/make-your-own-twitch-plays-stream.html
-
-## Disable Display Sleep
-1. Run `sudo nano /etc/lightdm/lightdm.conf`
-1. Add `xserver-command=X -s 0 dpms` under `[Seat:*]`
-1. Save the file with `Ctrl+O` and exit with `Ctrl+X`
 
 ## Running
 1. Open your Raspbian desktop via VNC
