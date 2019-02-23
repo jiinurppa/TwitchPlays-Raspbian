@@ -101,6 +101,7 @@ The above script is a adapted from `main.py` found here: http://www.wituz.com/ma
 ## Disable Display Sleep
 1. Run `sudo nano /etc/lightdm/lightdm.conf`
 1. Add `xserver-command=X -s 0 dpms` under `[Seat:*]`
+1. Save the file with `Ctrl+O` and exit with `Ctrl+X`
 
 ## Running
 1. Open your Raspbian desktop via VNC
