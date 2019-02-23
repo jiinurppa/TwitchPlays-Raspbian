@@ -87,8 +87,8 @@ while True:
             #Change this to make Twitch fit to your game!
             if msg.startswith("a"): press_key("X");
             if msg.startswith("b"): press_key("Z");
-	          if msg.startswith("l"): press_key("Left");
-	          if msg.startswith("r"): press_key("Right");
+            if msg.startswith("l"): press_key("Left");
+            if msg.startswith("r"): press_key("Right");
             if msg.startswith("u"): press_key("Up");
             if msg.startswith("d"): press_key("Down");
             if msg.startswith("start"): press_key("S");
