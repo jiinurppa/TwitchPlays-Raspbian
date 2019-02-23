@@ -98,6 +98,10 @@ while True:
 
 The above script is a adapted from `main.py` found here: http://www.wituz.com/make-your-own-twitch-plays-stream.html
 
+## Disable Display Sleep
+1. Run `sudo nano /etc/lightdm/lightdm.conf`
+1. Add `xserver-command=X -s 0 dpms` under `[Seat:*]`
+
 ## Running
 1. Open your Raspbian desktop via VNC
 1. Open Terminal with two tabs (`Shift+Ctrl+T` for new tab)
