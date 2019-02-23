@@ -24,8 +24,8 @@ These options can be changed from Retroarch's GUI or `~/.config/retroarch/retroa
 1. Set **video** driver to `gl` (`video_driver = "gl"`)
 1. Set **record** driver to `ffmpeg` (`record_driver = "ffmpeg"`)
 1. Set controls:
-  1. Set Select as a (`input_player1_select = "a"`)
-  1. Set Start as s (`input_player1_start = "s"`)
+   1. Set Select as a (`input_player1_select = "a"`)   
+   1. Set Start as s (`input_player1_start = "s"`)
 1. Download `nestopia_libretro.so` (for **NES** emulation, FCEUmm had input problems)
 1. Download a ROM (Retroarch has some homebrew available for download)
 
@@ -49,7 +49,7 @@ format = flv
 
 ## Reading Input From Twitch Chat
 1. Download twitch.py from https://pastebin.com/MDC0RZDp
-1. Save the following script as `letsplay.py`:
+2. Save the following script as `letsplay.py`:
 ```python
 import re
 import time
@@ -94,7 +94,7 @@ while True:
             if msg.startswith("start"): press_key("S");
             if msg.startswith("select"): press_key("A");
 ```
-1. Set your username (line 15) and OAuth token (line 16)
+3. Set your username (line 15) and OAuth token (line 16)
 
 The above script is a adapted from `main.py` found here: http://www.wituz.com/make-your-own-twitch-plays-stream.html
 
