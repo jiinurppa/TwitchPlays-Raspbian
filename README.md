@@ -104,6 +104,12 @@ while True:
 
 The above script is a adapted from `main.py` found here: http://www.wituz.com/make-your-own-twitch-plays-stream.html
 
+## (Optional) Power Saving
+* Disconnect all USB devices
+* Disable HDMI `sudo tvservice --off`
+* If you're using ethernet, turn off wifi `sudo ifconfig wlan0 down`
+* If you're using wifi, turn off ethernet (and USB) `echo '1-1' > /sys/bus/usb/drivers/usb/unbind`
+
 ## Running
 1. Open your Raspbian desktop via VNC
 1. Open Terminal with two tabs (`Shift+Ctrl+T` for new tab)
