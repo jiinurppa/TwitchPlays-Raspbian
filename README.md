@@ -109,6 +109,6 @@ The above script is a adapted from `main.py` found here: http://www.wituz.com/ma
 1. Open Terminal with two tabs (`Shift+Ctrl+T` for new tab)
 1. In first tab run (with your Twitch stream key) `retroarch -L ~/.config/retroarch/cores/nestopia_libretro.so --recordconfig ~/twitch.cfg --record rtmp://live.twitch.tv/app/stream_key_here ~/rom.nes`
 1. In second tab run `python letsplay.py`
-1. Close VNC and enjoy your Let's Play stream
+1. Close VNC and enjoy your Twitch Plays stream
 
 Run Retroarch with option `-v` if you encounter problems to see logging.
