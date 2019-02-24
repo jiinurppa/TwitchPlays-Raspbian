@@ -108,7 +108,8 @@ The above script is adapted from `main.py` found here: http://www.wituz.com/make
 ## (Optional) Power Saving
 * Disconnect all USB devices
 * Disable HDMI `sudo tvservice --off`
-* If you're using ethernet, turn off wifi and bluetooth `sudo rfkill block all`
+* Disable bluetooth `sudo rfkill block bluetooth`
+* If you're using ethernet, turn off wifi `sudo rfkill block wifi`
 * If you're using wifi, turn off ethernet (and USB) `echo '1-1' > /sys/bus/usb/drivers/usb/unbind`
 
 ## Running
