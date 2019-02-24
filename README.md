@@ -1,5 +1,5 @@
-# LetsPlay-Raspbian
-'Let's Play' setup for Raspbian (headless, some parts are **NES** specific, tested on **Raspberry Pi 3 B+**)
+# TwitchPlays-Raspbian
+'Twitch Plays' setup for Raspbian (headless, some parts are **NES** specific, tested on **Raspberry Pi 3 B+**)
 
 ## Raspbian Requirements
 1. System -> Boot: **To Desktop**
