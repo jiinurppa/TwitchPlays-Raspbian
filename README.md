@@ -2,8 +2,9 @@
 'Twitch Plays' setup for Raspbian (headless, some parts are **NES** specific, tested on **Raspberry Pi 3 B+**)
 
 ## Raspbian Requirements
-1. System -> Boot: **To Desktop**
-1. Interfaces -> VNC: **Enable**
+From the Rasbperry Pi Configuration tool
+1. System → Boot: **To Desktop**
+1. Interfaces → VNC: **Enable**
 
 ## Disable Display Sleep
 1. Run `sudo nano /etc/lightdm/lightdm.conf`
