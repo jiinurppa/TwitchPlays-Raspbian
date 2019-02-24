@@ -53,7 +53,7 @@ format = flv
 ```
 
 ## Reading Input From Twitch Chat
-1. Download twitch.py from https://pastebin.com/MDC0RZDp
+1. Download `twitch.py` from https://pastebin.com/MDC0RZDp
 2. Save the following script as `letsplay.py`:
 ```python
 import re
