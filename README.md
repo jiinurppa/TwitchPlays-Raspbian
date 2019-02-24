@@ -102,7 +102,7 @@ while True:
 ```
 3. Set your username (line 15) and OAuth token (line 16)
 
-The above script is a adapted from `main.py` found here: http://www.wituz.com/make-your-own-twitch-plays-stream.html
+The above script is adapted from `main.py` found here: http://www.wituz.com/make-your-own-twitch-plays-stream.html
 
 ## (Optional) Power Saving
 * Disconnect all USB devices
