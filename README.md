@@ -60,13 +60,14 @@ import re
 import time
 import twitch
 import subprocess
+from subprocess import check_output
 
 def press_key(key):
 	subprocess.call("xdotool keydown " + key + " sleep 0.01 keyup " + key, shell=True);
 	return;
 
 t = twitch.Twitch();
-wid = re.findall("[0-9]+", subprocess.check_output("xdotool search --name \"retroarch\"", shell=True))[0];
+wid = re.findall("[0-9]+", subprocess.check_output("export DISPLAY=:0 && xdotool search --name \"retroarch\"", shell=True))[0];
 subprocess.call("xdotool windowactivate " + wid, shell=True);
 
 #Enter your twitch username and oauth-key below
