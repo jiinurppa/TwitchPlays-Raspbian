@@ -30,8 +30,8 @@ These options can be changed from Retroarch's GUI or `~/.config/retroarch/retroa
 1. Set **video** driver to `gl` (`video_driver = "gl"`)
 1. Set **record** driver to `ffmpeg` (`record_driver = "ffmpeg"`)
 1. Set controls:
-   1. Set Select as a (`input_player1_select = "a"`)   
-   1. Set Start as s (`input_player1_start = "s"`)
+   1. Set **Select** as `a` (`input_player1_select = "a"`)   
+   1. Set **Start** as `s` (`input_player1_start = "s"`)
 1. Download `nestopia_libretro.so` (for **NES** emulation, FCEUmm had input problems)
 1. Download a ROM (Retroarch has some homebrew available for download)
 
@@ -114,7 +114,7 @@ The above script is adapted from `main.py` found here: http://www.wituz.com/make
 ## Running
 1. Open your Raspbian desktop via VNC
 1. Open Terminal with two tabs (`Shift+Ctrl+T` for new tab)
-1. In first tab run (with your Twitch stream key) `retroarch -L ~/.config/retroarch/cores/nestopia_libretro.so --recordconfig ~/twitch.cfg --record rtmp://live.twitch.tv/app/stream_key_here ~/rom.nes`
+1. In first tab run (with your Twitch stream key and ROM path) `retroarch -L ~/.config/retroarch/cores/nestopia_libretro.so --recordconfig ~/twitch.cfg --record rtmp://live.twitch.tv/app/stream_key_here ~/rom.nes`
 1. In second tab run `python letsplay.py`
 1. Close VNC and enjoy your Twitch Plays stream
 
