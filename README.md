@@ -197,15 +197,15 @@ Run Retroarch with option `-v` if you encounter problems to see logging.
 ## Chat Commands
 See/modify `letsplay.py`. Defaults are:
 
-|Button  | Command |
-|------- | ------- |
-| A      | !a      |
-| B      | !b      |
-| Select | !select |
-| Start  | !start  |
-| Up     | !u      |
-| Down   | !d      |
-| Left   | !l      |
-| Right  | !r      |
+|Button  | Command   |
+|------- | --------- |
+| A      | `!a`      |
+| B      | `!b`      |
+| Select | `!select` |
+| Start  | `!start`  |
+| Up     | `!u`      |
+| Down   | `!d`      |
+| Left   | `!l`      |
+| Right  | `!r`      |
 
 Commands will also work with any suffix, so `!u` and `!up` have the same function.
