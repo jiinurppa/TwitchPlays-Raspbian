@@ -150,7 +150,7 @@ t.twitch_connect(username, key);
  
 #The main loop
 while True:
-    #Check for new mesasages
+    #Check for new messages
     new_messages = t.twitch_recieve_messages();
  
     if not new_messages:
