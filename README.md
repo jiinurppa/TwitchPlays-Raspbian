@@ -60,47 +60,51 @@ import socket
 import sys
 import re
 
-class Twitch:
 
-    user = "";
-    oauth = "";
-    s = None;
+class Twitch:
+    user = ""
+    oauth = ""
+    s = None
 
     def twitch_login_status(self, data):
-        if not re.match(r'^:(testserver\.local|tmi\.twitch\.tv) NOTICE \* :Login unsuccessful\r\n$', data): return True
-        else: return False
+        if not re.match(r'^:(testserver\.local|tmi\.twitch\.tv) NOTICE \* :Login unsuccessful\r\n$', data):
+            return True
+        else:
+            return False
 
     def twitch_connect(self, user, key):
-        self.user = user;
-        self.oauth= key;
-        print("Connecting to twitch.tv");
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
-        s.settimeout(0.6);
-        connect_host = "irc.twitch.tv";
-        connect_port = 6667;
+        self.user = user
+        self.oauth = key
+        print("Connecting to twitch.tv")
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(0.6)
+        connect_host = "irc.twitch.tv"
+        connect_port = 6667
         try:
-            s.connect((connect_host, connect_port));
+            s.connect((connect_host, connect_port))
         except:
-            print("Failed to connect to twitch");
-            sys.exit();
-        print("Connected to twitch");
-        print("Sending our details to twitch...");
-        s.send('USER %s\r\n' % user);
-        s.send('PASS %s\r\n' % key);
-        s.send('NICK %s\r\n' % user);
+            print("Failed to connect to twitch")
+            sys.exit()
+        print("Connected to twitch")
+        print("Sending our details to twitch...")
+        s.send('USER %s\r\n' % user)
+        s.send('PASS %s\r\n' % key)
+        s.send('NICK %s\r\n' % user)
 
         if not self.twitch_login_status(s.recv(1024)):
-            print("... and they didn't accept our details");
-            sys.exit();
+            print("... and they didn't accept our details")
+            sys.exit()
         else:
-            print("... they accepted our details");
+            print("... they accepted our details")
             print("Connected to twitch.tv!")
-            self.s = s;
+            self.s = s
             s.send('JOIN #%s\r\n' % user)
-            s.recv(1024);
+            s.recv(1024)
 
     def check_has_message(self, data):
-        return re.match(r'^:[a-zA-Z0-9_]+\![a-zA-Z0-9_]+@[a-zA-Z0-9_]+(\.tmi\.twitch\.tv|\.testserver\.local) PRIVMSG #[a-zA-Z0-9_]+ :.+$', data)
+        return re.match(
+            r'^:[a-zA-Z0-9_]+\![a-zA-Z0-9_]+@[a-zA-Z0-9_]+(\.tmi\.twitch\.tv|\.testserver\.local) PRIVMSG #[a-zA-Z0-9_]+ :.+$',
+            data)
 
     def parse_message(self, data):
         return {
@@ -111,67 +115,79 @@ class Twitch:
 
     def twitch_recieve_messages(self, amount=1024):
         data = None
-        try: data = self.s.recv(1024);
-        except: return False;
+        try:
+            data = self.s.recv(1024)
+        except:
+            return False
 
         if not data:
-            print("Lost connection to Twitch, attempting to reconnect...");
-            self.twitch_connect(self.user, self.oauth);
+            print("Lost connection to Twitch, attempting to reconnect...")
+            self.twitch_connect(self.user, self.oauth)
             return None
 
         if data.startswith("PING"):
-            self.s.send("PONG " + data.split(" ", 3)[1] + "\r\n");
-            return None;
+            self.s.send("PONG " + data.split(" ", 3)[1] + "\r\n")
+            return None
 
         if self.check_has_message(data):
-            return [self.parse_message(line) for line in filter(None, data.split('\r\n'))];
+            return [self.parse_message(line) for line in filter(None, data.split('\r\n'))]
 
 ```
 2. Save the following script as `letsplay.py`:
 ```python
 import re
+import subprocess
 import time
 import twitch
-import subprocess
-from subprocess import check_output
 
-def press_key(key):
-	subprocess.call("xdotool keydown " + key + " sleep 0.01 keyup " + key, shell=True);
-	return;
 
-t = twitch.Twitch();
-wid = re.findall("[0-9]+", subprocess.check_output("export DISPLAY=:0 && xdotool search --name \"retroarch\"", shell=True))[0];
-subprocess.call("xdotool windowactivate " + wid, shell=True);
+def press_key(key_to_press):
+    subprocess.call(f"xdotool keydown {key_to_press} sleep 0.01 keyup {key_to_press}", shell=True)
+    return
 
-#Enter your twitch username and oauth-key below
-username = "username";
-key = "oauth:key";
-t.twitch_connect(username, key);
- 
-#The main loop
+
+t = twitch.Twitch()
+cmd = "export DISPLAY=:0 && xdotool search --name \"retroarch\""
+wid = re.findall("[0-9]+", subprocess.check_output(cmd, shell=True))[0]
+subprocess.call(f"xdotool windowactivate {wid}", shell=True)
+
+# Enter your twitch username and oauth-key below
+username = "username"
+key = "oauth:key"
+t.twitch_connect(username, key)
+
+# The main loop
 while True:
-    #Check for new messages
-    new_messages = t.twitch_recieve_messages();
- 
+    # Check for new messages
+    new_messages = t.twitch_recieve_messages()
+
     if not new_messages:
-        #No message
-	time.sleep(0.002)
+        # No message
+        time.sleep(0.002)
         continue
     else:
         for message in new_messages:
-            #Wuhu we got a message. Let's extract some details from it
+            # Got a message, let's extract some details from it
             msg = message['message'].lower()
             username = message['username'].lower()
- 
-            #Change this to make Twitch fit to your game!
-            if msg.startswith("!a"): press_key("X");
-            if msg.startswith("!b"): press_key("Z");
-            if msg.startswith("!l"): press_key("Left");
-            if msg.startswith("!r"): press_key("Right");
-            if msg.startswith("!u"): press_key("Up");
-            if msg.startswith("!d"): press_key("Down");
-            if msg.startswith("!start"): press_key("S");
-            if msg.startswith("!select"): press_key("A");
+
+            # Change this to make Twitch fit to your game!
+            if msg.startswith("!a"):
+                press_key("X")
+            if msg.startswith("!b"):
+                press_key("Z")
+            if msg.startswith("!l"):
+                press_key("Left")
+            if msg.startswith("!r"):
+                press_key("Right")
+            if msg.startswith("!u"):
+                press_key("Up")
+            if msg.startswith("!d"):
+                press_key("Down")
+            if msg.startswith("!start"):
+                press_key("S")
+            if msg.startswith("!select"):
+                press_key("A")
 
 ```
 3. Set your username (line 15) and OAuth token (line 16)
