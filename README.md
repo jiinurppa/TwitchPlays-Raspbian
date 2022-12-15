@@ -1,3 +1,5 @@
+:no_entry: [DEPRECATED]
+
 # TwitchPlays-Raspbian
 'Twitch Plays' setup for Raspbian (headless, some parts are **NES** specific, tested on **Raspberry Pi 3 B+**)
 
